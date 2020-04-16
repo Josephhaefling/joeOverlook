@@ -1,0 +1,61 @@
+@mixin textInputs() {
+  font-size: 1.5vw;
+  padding: 0% 3%;
+  height: 10%;
+  margin: 2%;
+  width: 80%;
+  border-radius: 2%;
+  border: none;
+  &:hover {
+    box-shadow: 0px 0px 7px 2px $shadow;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 7px 2px $shadow;
+  }
+}
+@mixin largeBtn() {
+  align-self: center;
+  border-radius: 2%;
+  cursor: pointer;
+  font-size: 1.75vw;
+  height: 10%;
+  margin: 11% 2% 2% 2%;
+  padding: 2%;
+  width: 86%;
+  &:hover {
+    box-shadow: 0px 0px 7px 2px $shadow;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 7px 2px $shadow;
+  }
+}
+@mixin allHeaders() {
+  color: #fff;
+  grid-area: 1 / 1 / 1 / 12;
+  text-align: center;
+  margin: 0%;
+  padding: 5% 0 0 0;
+}
+@mixin cards() {
+  color: #fff;
+  box-shadow: 0px 0px 20px -5px $shadow;
+  margin: 0% 0% 1% 0%;
+}
+@mixin mediumImage () {
+  border: 1px solid white;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+}
+@mixin cardData() {
+  float: right;
+  width: 75%;
+}
+// @mixin backGround() {
+//   background: {
+//     image: url('./images/creepyCastle.jpg');
+//     repeat: no-repeat;
+//   }
+// }
