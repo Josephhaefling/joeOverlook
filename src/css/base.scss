@@ -1,6 +1,128 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
-
+@import 'colors';
+@import 'mixins';
+html {
+  height: 100%;
+}
 body {
-  background-color: $primary-background;
+  background-image: url('../images/creepyCastle.jpg');
+  background-size: cover;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  font-family: $mainFont;
+}
+.login-container {
+  align-items: center;
+  background-color: $background;
+  border-radius: 2%;
+  display: flex;
+  flex-direction: column;
+  grid-area: 4 / 5 / 8 / 8;
+  box-shadow: 0px 0px 10px -4px $shadow;
+  h2{
+    color: #fff;
+   }
+  label {
+    color: #fff;
+    align-self: flex-start;
+    margin: 5% 0% 0% 10%;
+  }
+  input {
+    @include textInputs();
+  }
+  .large-btn{
+    @include largeBtn();
+  }
+}
+.manager-page{
+  display: grid;
+  height: 100%;
+  grid-area: 1 / 1 / 9 / 12;
+  grid-template-columns: repeat(11fr);
+  grid-template-rows: repeat(16fr);
+  h2 {
+    @include allHeaders();
+  }
+  .card {
+    @include cards();
+    background-color: $cardBackground;
+  }
+  .medium-image {
+    @include mediumImage();
+  }
+  #vacancy-card{
+    grid-area: 2 / 3 / 4 / 10;
+  }
+  #revenue-card{
+    grid-area: 5 / 3 / 7/ 10;
+  }
+  #available-card{
+    grid-area: 8 / 3 / 10 / 10;
+  }
+  #new-booking-card{
+    grid-area: 11 / 3 / 13 / 10;
+  }
+}
+.vacancies-text{
+  @include cardData();
+}
+.revenue-text{
+  @include cardData();
+}
+.availale-text{
+  @include cardData();
+}
+.new-booking-text{
+  @include cardData();
+}
+.medium-image {
+  @include mediumImage();
+}
+.user-page{
+  display: grid;
+  height: 100%;
+  grid-area: 1 / 1 / 8 / 12;
+  grid-template-columns: repeat(11fr);
+  grid-template-rows: repeat(11fr);
+  h2 {
+    @include allHeaders();
+  }
+  .card {
+    @include cards();
+  }
+  .medium-image {
+    @include mediumImage();
+  }
+  #past-booking-card{
+    grid-area: 2 / 2 / 4 / 11;
+  }
+  #current-booking-card{
+    grid-area: 4 / 2 / 6 / 11;
+  }
+  #total-spent-card{
+    grid-area: 6 / 2 / 8 / 11;
+  }
+  #new-booking-card{
+    grid-area: 8 / 2 / 10 / 11;
+  }
+}
+.vacancies-text{
+  @include cardData();
+}
+.revenue-text{
+  @include cardData();
+}
+.availale-text{
+  @include cardData();
+}
+.new-booking-text{
+  @include cardData();
+}
+.medium-image {
+  @include mediumImage();
+}
+.hide {
+  display: none;
 }
