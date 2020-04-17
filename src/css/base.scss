@@ -6,8 +6,7 @@ html {
   height: 100%;
 }
 body {
-  background-color: $cardBackground;
-  // background-image: url('../images/creepyCastle.jpg');
+  background-image: url('../images/creepyCastle.jpg');
   background-size: cover;
   min-height: 100%;
   display: grid;
@@ -38,7 +37,7 @@ body {
     @include largeBtn();
   }
 }
-.manager-page{
+.manager-page {
   display: grid;
   height: 100%;
   grid-area: 1 / 1 / 9 / 12;
