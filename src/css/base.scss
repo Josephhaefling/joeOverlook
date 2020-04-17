@@ -1,11 +1,13 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-@import 'colors';
+@import 'variables';
 @import 'mixins';
+
 html {
   height: 100%;
 }
 body {
-  background-image: url('../images/creepyCastle.jpg');
+  background-color: $cardBackground;
+  // background-image: url('../images/creepyCastle.jpg');
   background-size: cover;
   min-height: 100%;
   display: grid;
