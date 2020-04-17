@@ -9,6 +9,13 @@
 ### Files modified:
 - [ ] index.html
 - [ ] base.scss
+- [ ] _mixins.scss
 - [ ] _variables.scss
 - [ ] index.js
+- [ ] domUpdates.js
+- [ ] User.js
+- [ ] Hotel.js
+- [ ] Bookings.js
+- [ ] Manager.js
+- [ ] images
 - [ ] Other files:
