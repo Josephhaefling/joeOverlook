@@ -5,12 +5,19 @@ import $ from 'jquery';
 import domUpdates from './domUpdates';
 import User from './User';
 import Booking from './Booking';
+import Hotel from './Hotel';
+import Manager from './Manager';
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/creepyCastle.jpg'
-let userRepo = [];
-let roomRepo = [];
+import './images/creepyCastle.jpg';
+import './images/revenue.jpg';
+import './images/vacancy.jpg';
+import './images/theBlackLodge.jpg';
+let userRepo = []
+let roomRepo = []
+let bookingRepo = []
+let todaysDate = '2020/02/05'
 
 $('.large-btn').click(function(event) {
   loginManager();
@@ -48,8 +55,25 @@ let createRooms = (roomData) => {
 
 let createBookings = (bookingData) => {
   bookingData.bookings.forEach(booking => {
-    let newBooking = new Booking(booking);
+    let newBooking = new Booking(booking)
+    bookingRepo.push(newBooking)
   })
+  createHotel('2020/02/05')
+}
+
+let createHotel = (date) => {
+  let skeletInn = new Hotel(date, roomRepo)
+  createManager(todaysDate, skeletInn, roomRepo)
+  // skeletInn.getBookedRooms(roomRepo)
+  // skeletInn.getTotalRevenue(roomRepo)
+}
+
+let createManager = (currentDate, hotel, roomRepo) => {
+  let lucyPhurr = new Manager(currentDate, hotel, roomRepo)
+  lucyPhurr.getBookingStatus(bookingRepo)
+  lucyPhurr.getBookedRooms(bookingRepo)
+  lucyPhurr.getVacantRooms(roomRepo)
+  lucyPhurr.getTotalRevenue()
 }
 
 let loginManager = () => {

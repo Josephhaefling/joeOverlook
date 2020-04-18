@@ -5,6 +5,7 @@ const domUpdates = {
  displayAppropriatePage(userType) {
     $('.login-container').toggle('hide')
     $(`.${userType}-page`).toggle('hide')
+    $(`.${userType}-page`).css('display', 'grid')
   },
 
   showIDError() {

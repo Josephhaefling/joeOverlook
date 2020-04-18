@@ -50,6 +50,27 @@ body {
     @include cards();
     background-color: $cardBackground;
   }
+  #vacancy-img  {
+    background-image: url('../images/vacancy.jpg');
+    background-repeat: no-repeat;
+    background-size: 14vw;
+    background-position: (center center);
+    object-fit: cover;
+  }
+  #revenue-img  {
+    background-image: url('../images/revenue.jpg');
+    background-repeat: no-repeat;
+    background-size: 16vw;
+    background-position: (center center);
+    object-fit: cover;
+  }
+  #rooms-available-img  {
+    background-image: url('../images/theBlackLodge.jpg');
+    background-repeat: no-repeat;
+    background-size: 14vw;
+    background-position: (center center);
+    object-fit: cover;
+  }
   .medium-image {
     @include mediumImage();
   }
@@ -81,32 +102,34 @@ body {
 .medium-image {
   @include mediumImage();
 }
-.user-page{
+
+.customer-page{
   display: grid;
   height: 100%;
-  grid-area: 1 / 1 / 8 / 12;
+  grid-area: 1 / 1 / 9 / 12;
   grid-template-columns: repeat(11fr);
-  grid-template-rows: repeat(11fr);
+  grid-template-rows: repeat(16fr);
   h2 {
     @include allHeaders();
   }
   .card {
     @include cards();
+    background-color: $cardBackground;
   }
   .medium-image {
     @include mediumImage();
   }
   #past-booking-card{
-    grid-area: 2 / 2 / 4 / 11;
+    grid-area: 2 / 3 / 4 / 10;
   }
   #current-booking-card{
-    grid-area: 4 / 2 / 6 / 11;
+    grid-area: 5 / 3 / 7 / 10;
   }
   #total-spent-card{
-    grid-area: 6 / 2 / 8 / 11;
+    grid-area: 8 / 3 / 10 / 10;
   }
   #new-booking-card{
-    grid-area: 8 / 2 / 10 / 11;
+    grid-area: 11 / 3 / 13 / 10;
   }
 }
 .vacancies-text{

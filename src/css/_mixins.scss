@@ -36,7 +36,7 @@
   grid-area: 1 / 1 / 1 / 12;
   text-align: center;
   margin: 0%;
-  padding: 5% 0 0 0;
+  padding: 3% 0 0 0;
 }
 @mixin cards() {
   color: #fff;
@@ -44,7 +44,6 @@
   margin: 0% 0% 1% 0%;
 }
 @mixin mediumImage () {
-  border: 1px solid white;
   display: inline-block;
   width: 20%;
   height: 100%;
@@ -53,9 +52,3 @@
   float: right;
   width: 75%;
 }
-// @mixin backGround() {
-//   background: {
-//     image: url('./images/creepyCastle.jpg');
-//     repeat: no-repeat;
-//   }
-// }
