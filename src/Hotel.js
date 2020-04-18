@@ -4,8 +4,6 @@ class Hotel {
     this.occupiedRooms = [];
     this.vacantRooms = []
     this.allRooms = roomRepo;
-    // this.todaysBookings =[];
-    // this.laterBookings = [];
   }
 
   upDateOcuupiedRooms() {

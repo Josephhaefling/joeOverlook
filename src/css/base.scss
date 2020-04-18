@@ -116,6 +116,7 @@ body {
     @include cards();
     background-color: $cardBackground;
   }
+
   .medium-image {
     @include mediumImage();
   }
@@ -138,7 +139,7 @@ body {
 .revenue-text{
   @include cardData();
 }
-.availale-text{
+.available-text{
   @include cardData();
 }
 .new-booking-text{

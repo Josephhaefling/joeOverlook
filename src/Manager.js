@@ -10,7 +10,7 @@ class Manager {
   }
 
   getBookingStatus(bookingRepo) {
-      bookingRepo.forEach(booking => {
+    bookingRepo.forEach(booking => {
         booking.bookingDate === this.currentDate ? this.todaysBookings.push(booking) : this.laterBookings.push(booking)
     })
   }
@@ -29,12 +29,17 @@ class Manager {
     });
   }
 
+  getPercentageOfRoomsAvailable() {
+    return 100 - parseInt((this.bookedRooms.length / this.hotelRooms.length) * 100)
+  }
+
   getTotalRevenue() {
     let revenueSum = this.bookedRooms.reduce((totalRev, room) => {
       totalRev += room.costPerNight
       return totalRev
     }, 0)
     this.todaysRevenue = revenueSum
+    return revenueSum
   }
 }
 

@@ -20,7 +20,7 @@ let bookingRepo = []
 let todaysDate = '2020/02/05'
 
 $('.large-btn').click(function(event) {
-  loginManager();
+  loginUser();
 })
 
 fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
@@ -74,9 +74,11 @@ let createManager = (currentDate, hotel, roomRepo) => {
   lucyPhurr.getBookedRooms(bookingRepo)
   lucyPhurr.getVacantRooms(roomRepo)
   lucyPhurr.getTotalRevenue()
+  lucyPhurr.getPercentageOfRoomsAvailable()
+  domUpdates.displayManagerInfo(lucyPhurr)
 }
 
-let loginManager = () => {
+let loginUser = () => {
   let userID = $('#userID').val();
   let passWord = $('#password').val()
   userID === 'manager' ? verifyPassword('manager') : verifyUser(userID)

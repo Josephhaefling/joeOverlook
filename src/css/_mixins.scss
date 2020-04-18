@@ -45,10 +45,15 @@
 }
 @mixin mediumImage () {
   display: inline-block;
+  margin: none;
   width: 20%;
   height: 100%;
 }
 @mixin cardData() {
   float: right;
-  width: 75%;
+  font-size: 175%;
+  height: 50%;
+  margin: 8% 0% 0% 0%;
+  text-align: center;
+  width: 30%;
 }
