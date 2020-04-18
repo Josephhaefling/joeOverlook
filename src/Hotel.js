@@ -1,7 +1,18 @@
 class Hotel {
-  constructor(currentDate, ) {
+  constructor(currentDate, roomRepo) {
     this.currentDate = currentDate;
-    this.bookedRooms = [];
-    this.vacantRooms = [];
+    this.occupiedRooms = [];
+    this.vacantRooms = []
+    this.allRooms = roomRepo;
+  }
+
+  upDateOcuupiedRooms() {
+
+  }
+
+  updateVacantRooms() {
+
   }
 }
+
+export default Hotel

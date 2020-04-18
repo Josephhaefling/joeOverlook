@@ -6,26 +6,26 @@
   </head>
   <body>
       <section  class="login-container">
-        <h2> Welcome to Holiday Innards</h2>
+        <h2> Welcome to The Skelet Inn</h2>
         <label for="user-name" id="ID-label">Email Address</label>
-        <input type="text" name="user-name" id="userID">
+        <input type="text" name="user-name" id="userID" value="manager">
         <label for="password" id="password-label">Password</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" value="overlook2020">
         <button type="button" name="Login" class="large-btn">Login</button>
       </section>
       <section class="manager-page hide">
-        <h2>Welcome back Joe</h2>
-          <section class="card" id="vacancy-card">
-            <div class="medium-image"></div>
-            <div class="vacancies-text">Num Vacancies</div>
-          </section>
+        <h2>Welcome back Lucy</h2>
           <section class="card" id="revenue-card">
-            <div class="medium-image"></div>
+            <div class="medium-image" id="revenue-img"></div>
             <div class="revenue-text">Total Revenue</div>
           </section>
+          <section class="card" id="vacancy-card">
+            <div class="medium-image" id="vacancy-img"></div>
+            <div class="vacancies-text">Num Vacancies</div>
+          </section>
           <section class="card" id="available-card">
-            <div class="medium-image"></div>
-            <div class="availale-text">Rooms availale</div>
+            <div class="medium-image" id="rooms-available-img"></div>
+            <div class="available-text">Rooms availale</div>
           </section>
           <section class="card" id="new-booking-card">
             <div class="medium-image"></div>
@@ -34,10 +34,10 @@
       </section>
       <section class="customer-page hide">
         <h2>Welcome back User</h2>
-          <section class="card" id="past-booking-card">
-            <div class="medium-image"></div>
-            <div class="vacancies-text">Past Bookings</div>
-          </section>
+        <section class="card" id="past-booking-card">
+          <div class="medium-image"></div>
+          <div class="vacancies-text">Past Bookings</div>
+        </section>
           <section class="card" id="current-booking-card">
             <div class="medium-image"></div>
             <div class="revenue-text">Current Bookings</div>
