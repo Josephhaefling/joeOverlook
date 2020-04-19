@@ -11,9 +11,11 @@ import Manager from './Manager';
 import './css/base.scss';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/creepyCastle.jpg';
+import './images/creepyGraveYard.jpg';
 import './images/revenue.jpg';
 import './images/vacancy.jpg';
 import './images/theBlackLodge.jpg';
+let userLoginRepo = []
 let userRepo = []
 let roomRepo = []
 let bookingRepo = []
@@ -25,7 +27,7 @@ $('.large-btn').click(function(event) {
 
 fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
 .then(response => response.json())
-.then(data => createUsers(data))
+.then(data => createUserRepo(data))
 .catch(err => console.error())
 
 setTimeout(function fetchData() {
@@ -40,10 +42,9 @@ fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
 })
 
 
-let createUsers = (userData) => {
+let createUserRepo = (userData) => {
   userData.users.forEach(user => {
-    let guest = new User(user)
-    userRepo.push(guest)
+    userLoginRepo.push(user)
   })
 }
 
@@ -58,14 +59,20 @@ let createBookings = (bookingData) => {
     let newBooking = new Booking(booking)
     bookingRepo.push(newBooking)
   })
+  createUsers(userLoginRepo)
   createHotel('2020/02/05')
+}
+
+let createUsers = (userLoginRepo) => {
+  userLoginRepo.forEach(user => {
+    let guest = new User(user, bookingRepo, todaysDate, roomRepo)
+    userRepo.push(guest)
+  })
 }
 
 let createHotel = (date) => {
   let skeletInn = new Hotel(date, roomRepo)
   createManager(todaysDate, skeletInn, roomRepo)
-  // skeletInn.getBookedRooms(roomRepo)
-  // skeletInn.getTotalRevenue(roomRepo)
 }
 
 let createManager = (currentDate, hotel, roomRepo) => {
@@ -80,7 +87,6 @@ let createManager = (currentDate, hotel, roomRepo) => {
 
 let loginUser = () => {
   let userID = $('#userID').val();
-  let passWord = $('#password').val()
   userID === 'manager' ? verifyPassword('manager') : verifyUser(userID)
 }
 
@@ -88,6 +94,9 @@ let verifyUser = (userID) => {
   let currentUser = userRepo.find(user => userID === `customer${user.userID}`)
   let loginType = userID.replace(/[0-9]/g, '');
   currentUser ? verifyPassword(loginType) : domUpdates.showIDError()
+  domUpdates.displayUserInfo(currentUser)
+  currentUser.getPastBookings()
+  currentUser.getCurrentBookings()
 }
 
 let verifyPassword = (userType) => {

@@ -25,9 +25,18 @@ const domUpdates = {
   },
 
   displayManagerInfo(manager) {
-  $('.vacancies-text').text(`There are currently ${manager.availableRooms.length} available rooms.`)
-  $('.revenue-text').text(`Todays revenue is $${manager.todaysRevenue}.`)
-  $('.available-text').text(`${manager.getPercentageOfRoomsAvailable()}% of our rooms are available.`)
+    $('.vacancies-text').text(`There are currently ${manager.availableRooms.length} available rooms.`)
+    $('.revenue-text').text(`Todays revenue is $${manager.todaysRevenue}.`)
+    $('.available-text').text(`${manager.getPercentageOfRoomsAvailable()}% of our rooms are available.`)
+  },
+
+  displayUserInfo(user) {
+      $('#body').css('background-image','url(../images/creepyGraveYard.jpg)')
+      $('.user-header').text(`Welcome back ${user.userName.split(' ')[0]}`)
+      $('.total-spent-text').text(`You have spent $${user.getTotalSpent()} with us.`)
+      $('.current-bookings-text').text(`You have ${user.getCurrentBookings().length} bookings for today!`)
+      $('.future-bookings-text').text(`You have ${user.getFutureBookings().length} upcoming bookings.`)
+      $('.past-bookings-text').text(`You have ${user.getPastBookings().length} previous bookings.`)
   }
 
 
