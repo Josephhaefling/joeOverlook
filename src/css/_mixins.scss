@@ -40,6 +40,7 @@
 }
 @mixin cards() {
   color: #fff;
+  border-radius: 5px;
   box-shadow: 0px 0px 20px -5px $shadow;
   margin: 0% 0% 1% 0%;
 }
@@ -55,5 +56,5 @@
   height: 50%;
   margin: 8% 0% 0% 0%;
   text-align: center;
-  width: 30%;
-}
+  width: 20%;
+  }

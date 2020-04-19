@@ -11,6 +11,7 @@ import Manager from './Manager';
 import './css/base.scss';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/creepyCastle.jpg';
+import './images/creepyGraveYard.jpg';
 import './images/revenue.jpg';
 import './images/vacancy.jpg';
 import './images/theBlackLodge.jpg';

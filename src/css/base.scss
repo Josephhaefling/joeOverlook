@@ -120,17 +120,18 @@ body {
   .medium-image {
     @include mediumImage();
   }
-  #past-booking-card{
+  #booking-card{
     grid-area: 2 / 3 / 4 / 10;
   }
-  #current-booking-card{
+  // #current-booking-card{
+  //   grid-area: 5 / 3 / 7 / 10;
+  // }
+  #total-spent-card{
     grid-area: 5 / 3 / 7 / 10;
   }
-  #total-spent-card{
-    grid-area: 8 / 3 / 10 / 10;
-  }
   #new-booking-card{
-    grid-area: 11 / 3 / 13 / 10;
+    grid-area: 8 / 3 / 10 / 10;
+    // grid-area: 11 / 3 / 13 / 10;
   }
 }
 .vacancies-text{
@@ -147,6 +148,19 @@ body {
 }
 .medium-image {
   @include mediumImage();
+}
+
+.total-spent-text {
+  @include cardData()
+}
+.current-bookings-text {
+  @include cardData()
+}
+.past-bookings-text {
+  @include cardData()
+}
+.future-bookings-text {
+  @include cardData()
 }
 .hide {
   display: none;
