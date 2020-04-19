@@ -25,9 +25,14 @@ const domUpdates = {
   },
 
   displayManagerInfo(manager) {
-  $('.vacancies-text').text(`There are currently ${manager.availableRooms.length} available rooms.`)
-  $('.revenue-text').text(`Todays revenue is $${manager.todaysRevenue}.`)
-  $('.available-text').text(`${manager.getPercentageOfRoomsAvailable()}% of our rooms are available.`)
+    $('.vacancies-text').text(`There are currently ${manager.availableRooms.length} available rooms.`)
+    $('.revenue-text').text(`Todays revenue is $${manager.todaysRevenue}.`)
+    $('.available-text').text(`${manager.getPercentageOfRoomsAvailable()}% of our rooms are available.`)
+  },
+
+  displayUserInfo(user) {
+      $('.user-header').text(`Welcome back ${user.userName.split(' ')[0]}`)
+      $('.total-spent-text').text(`${user.getTotalSpent()}`)
   }
 
 
