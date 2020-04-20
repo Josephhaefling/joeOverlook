@@ -21,7 +21,7 @@ let roomRepo = []
 let bookingRepo = []
 let todaysDate = '2020/02/05'
 
-$('.large-btn').click(function(event) {
+$('.large-btn').click(function() {
   loginUser();
 })
 
@@ -73,16 +73,20 @@ let createUsers = (userLoginRepo) => {
 let createHotel = (date) => {
   let skeletInn = new Hotel(date, roomRepo)
   createManager(todaysDate, skeletInn, roomRepo)
+  getAvailableRooms(skeletInn)
 }
 
 let createManager = (currentDate, hotel, roomRepo) => {
   let lucyPhurr = new Manager(currentDate, hotel, roomRepo)
-  lucyPhurr.getBookingStatus(bookingRepo)
-  lucyPhurr.getBookedRooms(bookingRepo)
-  lucyPhurr.getVacantRooms(roomRepo)
-  lucyPhurr.getTotalRevenue()
-  lucyPhurr.getPercentageOfRoomsAvailable()
-  domUpdates.displayManagerInfo(lucyPhurr)
+  // lucyPhurr.getBookingStatus(bookingRepo)
+  // lucyPhurr.getBookedRooms(bookingRepo)
+  // lucyPhurr.getVacantRooms(roomRepo)
+  // lucyPhurr.getTotalRevenue()
+  // lucyPhurr.getPercentageOfRoomsAvailable()
+  domUpdates.displayManagerInfo(lucyPhurr, roomRepo, bookingRepo)
+  $('.see-rooms-btn').click(function() {
+    getAvailableRoomInfo(lucyPhurr, roomRepo, bookingRepo)
+  })
 }
 
 let loginUser = () => {
@@ -95,11 +99,16 @@ let verifyUser = (userID) => {
   let loginType = userID.replace(/[0-9]/g, '');
   currentUser ? verifyPassword(loginType) : domUpdates.showIDError()
   domUpdates.displayUserInfo(currentUser)
-  currentUser.getPastBookings()
-  currentUser.getCurrentBookings()
+  // currentUser.getPastBookings()
+  // currentUser.getCurrentBookings()
 }
 
 let verifyPassword = (userType) => {
   let passWord = $('#password').val()
   passWord === 'overlook2020' ? domUpdates.displayAppropriatePage(userType) : domUpdates.showPasswordError()
+}
+
+let getAvailableRoomInfo = (manager, roomRepo,bookingRepo) => {
+  manager.getBookedRooms(bookingRepo);
+  domUpdates.displayAvailableRooms(manager)
 }

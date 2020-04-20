@@ -131,7 +131,25 @@ body {
   }
   #new-booking-card{
     grid-area: 8 / 3 / 10 / 10;
-    // grid-area: 11 / 3 / 13 / 10;
+    display: flex;
+    flex-direction: column;
+  }
+  .book-room-label {
+    display: inline-block;
+    width: 30%;
+    margin: 2% 0 2% 0;
+  }
+  .calander {
+    display: inline-block;
+    width: 30%;
+    height: 20%;
+    margin: 2% 0 2% 0;
+  }
+  .see-rooms-btn {
+    display: inline-block;
+    width: 30%;
+    height: 20%;
+    margin: 2% 0 2% 0;
   }
 }
 .vacancies-text{

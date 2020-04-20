@@ -24,10 +24,10 @@ const domUpdates = {
     $('#password').css('box-shadow', '0px 0px 7px 2px red')
   },
 
-  displayManagerInfo(manager) {
-    $('.vacancies-text').text(`There are currently ${manager.availableRooms.length} available rooms.`)
-    $('.revenue-text').text(`Todays revenue is $${manager.todaysRevenue}.`)
-    $('.available-text').text(`${manager.getPercentageOfRoomsAvailable()}% of our rooms are available.`)
+  displayManagerInfo(manager, roomRepo, bookingRepo) {
+    $('.vacancies-text').text(`There are currently ${manager.getVacantRooms(roomRepo, bookingRepo).length} available rooms.`)
+    $('.revenue-text').text(`Todays revenue is $${manager.getTotalRevenue(bookingRepo)}.`)
+    $('.available-text').text(`${manager.getPercentageOfRoomsAvailable(roomRepo, bookingRepo)}% of our rooms are available.`)
   },
 
   displayUserInfo(user) {
@@ -37,7 +37,11 @@ const domUpdates = {
       $('.current-bookings-text').text(`You have ${user.getCurrentBookings().length} bookings for today!`)
       $('.future-bookings-text').text(`You have ${user.getFutureBookings().length} upcoming bookings.`)
       $('.past-bookings-text').text(`You have ${user.getPastBookings().length} previous bookings.`)
-  }
+  },
+
+  displayAvailableRooms(manager) {
+    console.log('hi');
+    }
 
 
 }
