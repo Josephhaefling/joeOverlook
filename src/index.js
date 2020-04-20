@@ -15,11 +15,13 @@ import './images/creepyGraveYard.jpg';
 import './images/revenue.jpg';
 import './images/vacancy.jpg';
 import './images/theBlackLodge.jpg';
+import './images/creepyRoom1.jpg';
 let userLoginRepo = []
 let userRepo = []
 let roomRepo = []
 let bookingRepo = []
 let todaysDate = '2020/02/05'
+let skeletInn;
 
 $('.large-btn').click(function() {
   loginUser();
@@ -71,7 +73,7 @@ let createUsers = (userLoginRepo) => {
 }
 
 let createHotel = (date) => {
-  let skeletInn = new Hotel(date, roomRepo)
+  skeletInn = new Hotel(date, roomRepo)
   createManager(todaysDate, skeletInn, roomRepo)
   getAvailableRooms(skeletInn)
 }
@@ -85,7 +87,7 @@ let createManager = (currentDate, hotel, roomRepo) => {
   // lucyPhurr.getPercentageOfRoomsAvailable()
   domUpdates.displayManagerInfo(lucyPhurr, roomRepo, bookingRepo)
   $('.see-rooms-btn').click(function() {
-    getAvailableRoomInfo(lucyPhurr, roomRepo, bookingRepo)
+    getAvailableRoomInfo(roomRepo, bookingRepo)
   })
 }
 
@@ -108,7 +110,13 @@ let verifyPassword = (userType) => {
   passWord === 'overlook2020' ? domUpdates.displayAppropriatePage(userType) : domUpdates.showPasswordError()
 }
 
-let getAvailableRoomInfo = (manager, roomRepo,bookingRepo) => {
-  manager.getBookedRooms(bookingRepo);
-  domUpdates.displayAvailableRooms(manager)
+let getAvailableRoomInfo = (roomRepo, bookingRepo) => {
+  let userRequest = new Manager($('.calander').val(), skeletInn, roomRepo)
+  let today = new Date(todaysDate)
+  let userDate = new Date($('.calander').val().toLocaleString('en-GB', {timeZone: 'America/Denver', hour12: false}));
+  // console.log(userRequest);
+  // console.log('user', userDate.getTime());
+  // console.log('date', today.getTime());
+  userRequest.getBookedRooms(bookingRepo);
+  domUpdates.displayAvailableRooms(userRequest, todaysDate, roomRepo, bookingRepo)
 }

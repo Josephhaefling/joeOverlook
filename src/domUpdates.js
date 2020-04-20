@@ -39,8 +39,26 @@ const domUpdates = {
       $('.past-bookings-text').text(`You have ${user.getPastBookings().length} previous bookings.`)
   },
 
-  displayAvailableRooms(manager) {
-    console.log('hi');
+  displayAvailableRooms(manager, todaysDate, roomRepo, bookingRepo) {
+    $('.see-rooms-btn').parent().parent().toggle('hide')
+    $('.available-rooms-page').toggle('hide')
+    $('.available-rooms').text(`Here are the rooms available for ${todaysDate}`)
+    this.createRoomCards(manager, todaysDate, roomRepo, bookingRepo)
+  },
+
+    createRoomCards(manager, todaysDate, roomRepo, bookingRepo) {
+      let vacantRooms = manager.getVacantRooms(roomRepo, bookingRepo)
+      vacantRooms.forEach(room => {
+        $('.room-container').prepend(
+          `<section class="room-section">
+           <image class="room-image" src="./images/creepyRoom1.jpg">
+           <span class="room-number">Room#${room.number}</span>
+           <span class="room-type">Room Type:${room.roomType}</span>
+           <span class="number-beds">Beds:${room.numBeds}</span>
+           <span class="bed-size">Bed Size:${room.bedSize}</span>
+           </section>`
+        )
+      })
     }
 
 

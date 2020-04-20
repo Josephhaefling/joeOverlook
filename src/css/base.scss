@@ -180,6 +180,35 @@ body {
 .future-bookings-text {
   @include cardData()
 }
+.available-rooms-page {
+  height: 100%;
+  grid-area: 1 / 1 / 9 / 12;
+  h2 {
+    @include allHeaders();
+  }
+  .room-section {
+    height: 10%;
+    width: 30%;
+  }
+  .room-image {
+    @include roomImage();
+  }
+}
+
+.room-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  .room-section {
+    display: block;
+    height: 30%;
+    width: 30%;
+  }
+  .room-image {
+  @include roomImage();
+  }
+}
 .hide {
   display: none;
 }
