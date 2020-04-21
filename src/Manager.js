@@ -9,7 +9,6 @@ class Manager {
 
   getBookingStatus(bookingRepo) {
     let date = this.currentDate;
-    console.log(date);
     return bookingRepo.filter(booking => booking.bookingDate.getTime() === this.currentDate.getTime())
   }
 

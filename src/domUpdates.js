@@ -39,18 +39,19 @@ const domUpdates = {
       $('.past-bookings-text').text(`You have ${user.getPastBookings().length} previous bookings.`)
   },
 
-  displayAvailableRooms(manager, todaysDate, roomRepo, bookingRepo) {
+  displayAvailableRooms(manager, selectedDate, roomRepo, bookingRepo) {
+    let date = selectedDate.toString().split(' ').slice(0, 4).join(' ')
     $('#body').css('background-image', 'none')
     $('#body').css('background-color','black')
     $('.see-rooms-btn').parent().parent().toggle('hide')
     $('.available-rooms-page').toggle('hide')
-    $('.available-rooms').text(`Here are the available rooms for ${todaysDate}`)
-    this.createRoomCards(manager, todaysDate, roomRepo, bookingRepo)
+    $('.available-rooms').text(`Here are the available rooms for ${date}`)
+    this.createRoomCards(manager, roomRepo, bookingRepo)
   },
 
-    createRoomCards(manager, todaysDate, roomRepo, bookingRepo) {
+    createRoomCards(manager, roomRepo, bookingRepo) {
       let vacantRooms = manager.getVacantRooms(roomRepo, bookingRepo)
-      vacantRooms.forEach(room => {
+      vacantRooms.length > 0 ? vacantRooms.forEach(room   => {
         $('.room-container').prepend(
           `<button class="room-section" id="${room.number}">
            <div class="room-button room-image" id="${room.number}"></div>
@@ -60,19 +61,38 @@ const domUpdates = {
            <span class="room-button bed-size" id="${room.number}">Bed Size:${room.bedSize}</span>
            </button>`
         )
-      })
+      }) : this.saySorry(manager)
     },
 
     filterRooms(event, availableRooms) {
       let inputValue = $('#room-type-drop-down').val()
-      // console.log(inputValue);
       availableRooms.forEach(room => {
         if (room.roomType !== inputValue) {
         $(`#${room.number}`).toggle('hide');
         }
       });
-      // event.toggle('hide')
-      // console.log(Date.now());
+    },
+
+    saySorry(manager) {
+      let date =manager.currentDate.toString().split(' ').slice(0, 4).join(' ');
+      $('.room-container').prepend(
+        `<section class="room-section" id="sorry-page">
+         <span class="room-button bed-size" id="$sorry-text">We are sorry but we don't have any vacancies on ${date}</span>
+         </section>`
+      )},
+
+      displayThankYou() {
+        $('.room-container').toggle('hide')
+        $(`<section class="room-section" id="thanks-page">
+         <span class="room-button bed-size" id="$thanks-text">Thanks for staying with us! We look forward to having you for dinner.</span>
+         <button class="back-to-main">Back to Main</button>
+         </section>`).insertAfter('.search-button')
+      },
+      goBackToMain() {
+      $('.back-to-main').click(() => {
+       $('.available-rooms-page').toggle('hide')
+       $(`.customer-page`).toggle('hide')
+      })
     }
 }
 

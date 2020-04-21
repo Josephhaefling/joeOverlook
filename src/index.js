@@ -20,6 +20,7 @@ let userLoginRepo = []
 let userRepo = []
 let roomRepo = []
 let bookingRepo = []
+let loggedInUser;
 let todaysDate = '2020/02/05'
 let skeletInn;
 
@@ -33,7 +34,7 @@ $('.large-btn').click(function() {
 fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
 .then(response => response.json())
 .then(data => createUserRepo(data))
-.catch(err => console.error())
+.catch(err => console.error(err))
 
 setTimeout(function fetchData() {
 fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
@@ -99,8 +100,7 @@ let verifyUser = (userID) => {
   let loginType = userID.replace(/[0-9]/g, '');
   currentUser ? verifyPassword(loginType) : domUpdates.showIDError()
   domUpdates.displayUserInfo(currentUser)
-  // currentUser.getPastBookings()
-  // currentUser.getCurrentBookings()
+  loggedInUser = currentUser
 }
 
 let verifyPassword = (userType) => {
@@ -110,15 +110,67 @@ let verifyPassword = (userType) => {
 
 let getAvailableRoomInfo = (roomRepo, bookingRepo) => {
   let userRequest = new Manager($('.calander').val(), skeletInn, roomRepo)
-  let today = new Date(todaysDate)
+  let formattedDate = [$('.calander').val().slice(-4), $('.calander').val().slice(0,5)].join('/');
   let userDate = new Date($('.calander').val())
-  domUpdates.displayAvailableRooms(userRequest, todaysDate, roomRepo, bookingRepo)
+  domUpdates.displayAvailableRooms(userRequest, userDate, roomRepo, bookingRepo)
   searchRooms(userRequest, todaysDate, roomRepo, bookingRepo)
+  createNewBooking(userRequest, todaysDate, roomRepo, bookingRepo)
 }
 
 let searchRooms = (manager, todaysDate, roomRepo, bookingRepo) => {
-  $('.search-button').click(function() {
+  $('.search-button').click(() => {
     let availableRooms = manager.getVacantRooms(roomRepo, bookingRepo)
-    domUpdates.filterRooms($(event.target).parent(), availableRooms)
+    availableRooms.length > 0 ? domUpdates.filterRooms($(event.target).parent(), availableRooms) : domUpdates.saySorry()
+
 })
+}
+
+
+let createNewBooking = (manager, todaysDate, roomRepo, bookingRepo, currentUser) => {
+  $('.room-button').click(() => {
+    let roomsAvailable = manager.getVacantRooms(roomRepo, bookingRepo)
+    let target = parseInt($(event.target).parent().attr('id'));
+    let currentUser = loggedInUser;
+    let booking = roomsAvailable.filter(room => room.number === target)
+    let date = getFormattedDate(currentUser).join('')
+    postBooking(currentUser, booking[0], date)
+})
+}
+
+let getFormattedDate = (currentUser) => {
+  let newDate = []
+  let date = currentUser.todaysDate.toISOString().split('').slice(0, 10)
+  let formattedDated = date.forEach(element => {
+    if (element === '-') {
+      element = '/'
+    }
+    newDate.push(element)
+  })
+  return newDate
+}
+
+function postBooking(currentUser, room, date) {
+     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify({
+          userID: currentUser.userID,
+          date: date,
+          roomNumber: room.number
+      })
+     })
+       .then(response => response.json())
+       .catch(err => console.error(err))
+       domUpdates.displayThankYou()
+       refreshBookingInfo()
+       domUpdates.goBackToMain()
+}
+
+let refreshBookingInfo = () => {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+  .then(response => response.json())
+  .then(data => createBookings(data))
+  .catch(data => console.error())
 }
