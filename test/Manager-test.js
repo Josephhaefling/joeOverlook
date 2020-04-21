@@ -54,7 +54,7 @@ describe('Manager', () => {
   it('should be an instance of Manager', () => {
     expect(lucyPhurr).to.be.an.instanceof(Manager)
   })
-  it.only('should be able to get todays bookings', () => {
+  it('should be able to get todays bookings', () => {
     createBookingRepo()
     expect(lucyPhurr.getBookingStatus(bookingRepo)).to.deep.equal([
       bookingRepo[0],
@@ -63,7 +63,7 @@ describe('Manager', () => {
       bookingRepo[5]
     ])
   })
-  it('should get booked rooms', () => {
+  it.only('should get booked rooms', () => {
     createBookingRepo()
     expect(lucyPhurr.getBookedRooms(bookingRepo)).to.deep.equal([
       roomRepo[0],

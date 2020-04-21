@@ -40,9 +40,11 @@ const domUpdates = {
   },
 
   displayAvailableRooms(manager, todaysDate, roomRepo, bookingRepo) {
+    $('#body').css('background-image', 'none')
+    $('#body').css('background-color','black')
     $('.see-rooms-btn').parent().parent().toggle('hide')
     $('.available-rooms-page').toggle('hide')
-    $('.available-rooms').text(`Here are the rooms available for ${todaysDate}`)
+    $('.available-rooms').text(`Here are the available rooms for ${todaysDate}`)
     this.createRoomCards(manager, todaysDate, roomRepo, bookingRepo)
   },
 
@@ -50,18 +52,28 @@ const domUpdates = {
       let vacantRooms = manager.getVacantRooms(roomRepo, bookingRepo)
       vacantRooms.forEach(room => {
         $('.room-container').prepend(
-          `<section class="room-section">
-           <image class="room-image" src="./images/creepyRoom1.jpg">
-           <span class="room-number">Room#${room.number}</span>
-           <span class="room-type">Room Type:${room.roomType}</span>
-           <span class="number-beds">Beds:${room.numBeds}</span>
-           <span class="bed-size">Bed Size:${room.bedSize}</span>
-           </section>`
+          `<button class="room-section" id="${room.number}">
+           <div class="room-button room-image" id="${room.number}"></div>
+           <span class="room-button room-number" id="${room.number}">Room#${room.number}</span>
+           <span class="room-buttonroom-type" id="${room.number}">Room Type:${room.roomType}</span>
+           <span class="room-button number-beds" id="${room.number}">Beds:${room.numBeds}</span>
+           <span class="room-button bed-size" id="${room.number}">Bed Size:${room.bedSize}</span>
+           </button>`
         )
       })
+    },
+
+    filterRooms(event, availableRooms) {
+      let inputValue = $('#room-type-drop-down').val()
+      // console.log(inputValue);
+      availableRooms.forEach(room => {
+        if (room.roomType !== inputValue) {
+        $(`#${room.number}`).toggle('hide');
+        }
+      });
+      // event.toggle('hide')
+      // console.log(Date.now());
     }
-
-
 }
 
 export default domUpdates

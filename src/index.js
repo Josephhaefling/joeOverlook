@@ -26,6 +26,9 @@ let skeletInn;
 $('.large-btn').click(function() {
   loginUser();
 })
+// $('.search-button').click(function() {
+//   searchRooms();
+// })
 
 fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
 .then(response => response.json())
@@ -80,11 +83,6 @@ let createHotel = (date) => {
 
 let createManager = (currentDate, hotel, roomRepo) => {
   let lucyPhurr = new Manager(currentDate, hotel, roomRepo)
-  // lucyPhurr.getBookingStatus(bookingRepo)
-  // lucyPhurr.getBookedRooms(bookingRepo)
-  // lucyPhurr.getVacantRooms(roomRepo)
-  // lucyPhurr.getTotalRevenue()
-  // lucyPhurr.getPercentageOfRoomsAvailable()
   domUpdates.displayManagerInfo(lucyPhurr, roomRepo, bookingRepo)
   $('.see-rooms-btn').click(function() {
     getAvailableRoomInfo(roomRepo, bookingRepo)
@@ -113,10 +111,14 @@ let verifyPassword = (userType) => {
 let getAvailableRoomInfo = (roomRepo, bookingRepo) => {
   let userRequest = new Manager($('.calander').val(), skeletInn, roomRepo)
   let today = new Date(todaysDate)
-  let userDate = new Date($('.calander').val().toLocaleString('en-GB', {timeZone: 'America/Denver', hour12: false}));
-  // console.log(userRequest);
-  // console.log('user', userDate.getTime());
-  // console.log('date', today.getTime());
-  userRequest.getBookedRooms(bookingRepo);
+  let userDate = new Date($('.calander').val())
   domUpdates.displayAvailableRooms(userRequest, todaysDate, roomRepo, bookingRepo)
+  searchRooms(userRequest, todaysDate, roomRepo, bookingRepo)
+}
+
+let searchRooms = (manager, todaysDate, roomRepo, bookingRepo) => {
+  $('.search-button').click(function() {
+    let availableRooms = manager.getVacantRooms(roomRepo, bookingRepo)
+    domUpdates.filterRooms($(event.target).parent(), availableRooms)
+})
 }

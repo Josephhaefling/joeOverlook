@@ -8,15 +8,12 @@ class Manager {
   }
 
   getBookingStatus(bookingRepo) {
-    console.log(bookingRepo);
-    // console.log(bookingRepo);
-    // console.log(this.currentDate.getTime());
-    // return bookingRepo.filter(booking => console.log('hi', booking.bookingDate.getTime()))
+    let date = this.currentDate;
+    console.log(date);
     return bookingRepo.filter(booking => booking.bookingDate.getTime() === this.currentDate.getTime())
   }
 
   getBookedRooms(bookingRepo) {
-    console.log(bookingRepo);
     let todaysBookings = this.getBookingStatus(bookingRepo)
       return todaysBookings.map(booking => {
         return this.hotelRooms.filter(room => room.number === booking.roomNumber)
@@ -24,9 +21,6 @@ class Manager {
   }
 
   getVacantRooms(roomRepo, bookingRepo) {
-    console.log('hi');
-    console.log('room', roomRepo);
-    console.log('bookings', bookingRepo);
     let todaysBookedRooms = this.getBookedRooms(bookingRepo)
     return roomRepo.filter(room => !todaysBookedRooms.includes(room))
   }
