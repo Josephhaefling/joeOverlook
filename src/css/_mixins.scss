@@ -47,7 +47,7 @@
 @mixin mediumImage () {
   display: inline-block;
   margin: none;
-  width: 20%;
+  width: 100%;
   height: 100%;
 }
 @mixin cardData() {
@@ -58,3 +58,7 @@
   text-align: center;
   width: 20%;
   }
+@mixin roomImage() {
+  height: 60%;
+  width: 100%;
+}

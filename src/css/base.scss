@@ -6,6 +6,7 @@ html {
   height: 100%;
 }
 body {
+  background-repeat: no-repeat;
   background-image: url('../images/creepyCastle.jpg');
   background-size: cover;
   min-height: 100%;
@@ -131,7 +132,25 @@ body {
   }
   #new-booking-card{
     grid-area: 8 / 3 / 10 / 10;
-    // grid-area: 11 / 3 / 13 / 10;
+    display: flex;
+    flex-direction: column;
+  }
+  .book-room-label {
+    display: inline-block;
+    width: 30%;
+    margin: 2% 0 2% 0;
+  }
+  .calander {
+    display: inline-block;
+    width: 30%;
+    height: 20%;
+    margin: 2% 0 2% 0;
+  }
+  .see-rooms-btn {
+    display: inline-block;
+    width: 30%;
+    height: 20%;
+    margin: 2% 0 2% 0;
   }
 }
 .vacancies-text{
@@ -162,6 +181,79 @@ body {
 .future-bookings-text {
   @include cardData()
 }
+.available-rooms-page {
+  height: 100%;
+  grid-area: 1 / 1 / 9 / 12;
+  h2 {
+    @include allHeaders();
+    background-color: $background;
+  }
+}
+
+.room-container {
+  display: flex;
+  height: 90%;
+  width: 100%;
+  margin-top: 5%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+  .room-section {
+    cursor: pointer;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    background-color: $cardBackground;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px 0px $shadow;
+    display: block;
+    color: #fff;
+    height: 45%;
+    width: 25%;
+    &:hover {
+      box-shadow: 0px 0px 8px 3px $shadow;
+
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0px 0px 8px 3px $shadow;
+
+    }
+  }
+
+    .room-number {
+      display: block;
+      width: 90%;
+      margin-top: 1.5%;
+      padding: 1% 1% 1% 5%;
+    }
+    .room-type {
+      display: block;
+      width: 90%;
+      margin-top: 1.5%;
+      padding: 1% 1% 1% 5%;
+    }
+    .number-beds {
+      display: block;
+      width: 90%;
+      margin-top: 1.5%;
+      padding: 1% 1% 1% 5%;
+    }
+    .bed-size {
+      display: block;
+      width: 90%;
+      margin-top: 1.5%;
+      padding: 1% 1% 1% 5%;
+    }
+  .room-image {
+  @include roomImage();
+  background-image: url('../images/creepyRoom1.jpg');
+  background-size: 30vw;
+  background-repeat: no-repeat;
+  background-position: (center center);
+  object-fit: cover;
+  }
+
 .hide {
   display: none;
 }

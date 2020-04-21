@@ -1,40 +1,35 @@
 class Manager {
   constructor(todaysDate, hotel) {
-    this.currentDate = todaysDate
+    this.currentDate = new Date(todaysDate)
     this.hotelRooms = hotel.allRooms
     this.todaysRevenue = 0;
-    this.availableRooms = [];
-    this.bookedRooms = [];
     this.todaysBookings = [];
     this.laterBookings = [];
   }
 
   getBookingStatus(bookingRepo) {
-    bookingRepo.forEach(booking => {
-        booking.bookingDate === this.currentDate ? this.todaysBookings.push(booking) : this.laterBookings.push(booking)
-    })
+    let date = this.currentDate;
+    return bookingRepo.filter(booking => booking.bookingDate.getTime() === this.currentDate.getTime())
   }
 
   getBookedRooms(bookingRepo) {
-    this.hotelRooms.forEach(room => {
-      this.todaysBookings.forEach(booking => {
-        booking.roomNumber === room.number ? this.bookedRooms.push(room) : console.log();
-      })
-    })
+    let todaysBookings = this.getBookingStatus(bookingRepo)
+      return todaysBookings.map(booking => {
+        return this.hotelRooms.filter(room => room.number === booking.roomNumber)
+    }).flat()
   }
 
-  getVacantRooms(roomRepo) {
-    roomRepo.forEach(room => {
-      this.bookedRooms.includes(room) ? console.log() : this.availableRooms.push(room)
-    });
+  getVacantRooms(roomRepo, bookingRepo) {
+    let todaysBookedRooms = this.getBookedRooms(bookingRepo)
+    return roomRepo.filter(room => !todaysBookedRooms.includes(room))
   }
 
-  getPercentageOfRoomsAvailable() {
-    return 100 - parseInt((this.bookedRooms.length / this.hotelRooms.length) * 100)
+  getPercentageOfRoomsAvailable(roomRepo, bookingRepo) {
+    return Math.round((this.getVacantRooms(roomRepo, bookingRepo).length / roomRepo.length) * 100)
   }
 
-  getTotalRevenue() {
-    let revenueSum = this.bookedRooms.reduce((totalRev, room) => {
+  getTotalRevenue(bookingRepo) {
+    let revenueSum = this.getBookedRooms(bookingRepo).reduce((totalRev, room) => {
       totalRev += room.costPerNight
       return totalRev
     }, 0)
