@@ -8,15 +8,15 @@
       <section  class="login-container">
         <h2> Welcome to The Skelet Inn</h2>
         <label for="user-name" id="ID-label">Email Address</label>
-        <input type="text" name="user-name" id="userID">
+        <input type="text" name="user-name" id="userID" aria-label='user ID input'>
         <label for="password" id="password-label">Password</label>
-        <input type="password" name="password" id="password">
-        <button type="button" name="Login" class="large-btn">Login</button>
+        <input type="password" name="password" id="password" aria-label='password input'>
+        <button type="button" name="Login" class="large-btn" aria-label='login button'>Login</button>
       </section>
       <section class="manager-page hide">
         <h2>Welcome back Lucy</h2>
           <section class="card" id="revenue-card">
-            <div class="medium-image" id="revenue-img"></div>
+            <div class="medium-image" id="revenue-img" alt="image of gold coins"></div>
             <div class="revenue-text">Total Revenue</div>
           </section>
           <section class="card" id="vacancy-card">
@@ -48,7 +48,7 @@
             <div class="medium-image" id="book-room-img"></div>
             <span class="book-room "for="create-new-booking">Book a Room
             <label class="booking-date">Input Date
-              <input class="calander" id="create-new-booking" type="text" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="02/06/2020"/>
+              <input class="calander" id="create-new-booking" type="text" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="mm/dd/yyyy"/ aria-label='select date mm/dd/yyyy'>
             </label>
             <button class="see-rooms-btn" type="button" name="available-rooms">See Available Rooms</button>
           </span>
