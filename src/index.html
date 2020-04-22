@@ -8,9 +8,9 @@
       <section  class="login-container">
         <h2> Welcome to The Skelet Inn</h2>
         <label for="user-name" id="ID-label">Email Address</label>
-        <input type="text" name="user-name" id="userID" value="customer9">
+        <input type="text" name="user-name" id="userID">
         <label for="password" id="password-label">Password</label>
-        <input type="password" name="password" id="password" value="overlook2020">
+        <input type="password" name="password" id="password">
         <button type="button" name="Login" class="large-btn">Login</button>
       </section>
       <section class="manager-page hide">
@@ -35,22 +35,23 @@
       <section class="customer-page hide">
         <h2 class="user-header">Welcome back User</h2>
           <section class="card" id="booking-card">
-            <div class="medium-image"></div>
+            <div class="medium-image" id="bookings-img"></div>
             <div class="current-bookings-text">Current Bookings</div>
             <div class="future-bookings-text">Current Bookings</div>
             <div class="past-bookings-text">Past Bookings</div>
           </section>
           <section class="card" id="total-spent-card">
-            <div class="medium-image"></div>
+            <div class="medium-image" id="total-spent-img"></div>
             <div class="total-spent-text">Total Spent</div>
           </section>
           <section class="card" id="new-booking-card">
-            <div class="medium-image"></div>
-            <label class="book-room-label "for="create-new-booking">New Booking</label>
-            <label>Input Date (MM/DD/YYYY):
+            <div class="medium-image" id="book-room-img"></div>
+            <span class="book-room "for="create-new-booking">Book a Room
+            <label class="booking-date">Input Date
               <input class="calander" id="create-new-booking" type="text" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="02/06/2020"/>
             </label>
             <button class="see-rooms-btn" type="button" name="available-rooms">See Available Rooms</button>
+          </span>
           </section>
       </section>
       <section class="available-rooms-page hide">
