@@ -1,15 +1,10 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
 import domUpdates from './domUpdates';
 import User from './User';
 import Booking from './Booking';
 import Hotel from './Hotel';
 import Manager from './Manager';
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/creepyCastle.jpg';
 import './images/creepyGraveYard.jpg';
 import './images/revenue.jpg';
@@ -26,25 +21,25 @@ let userLoginRepo = []
 let userRepo = []
 let roomRepo = []
 let bookingRepo = []
-let loggedInUser;
+let loggedInUser
+let skeletInn
 let todaysDate = new Date(Date())
-let skeletInn;
 $('.large-btn').click(function() {
   loginUser();
 })
 fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
-.then(response => response.json())
-.then(data => createUserRepo(data))
-.catch(err => console.error(err))
+  .then(response => response.json())
+  .then(data => createUserRepo(data))
+  .catch(err => console.error(err))
 setTimeout(function fetchData() {
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
-.then(response => response.json())
-.then(data => createRooms(data))
-.catch(data => console.error());
-fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
-.then(response => response.json())
-.then(data => createBookings(data))
-.catch(data => console.error())
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
+    .then(response => response.json())
+    .then(data => createRooms(data))
+    .catch(data => console.error());
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+    .then(response => response.json())
+    .then(data => createBookings(data))
+    .catch(data => console.error())
 })
 let createUserRepo = (userData) => {
   userData.users.forEach(user => {
@@ -56,16 +51,16 @@ let convertDate = () => {
   let newDate = []
   let date = todaysDate.toISOString().split('').slice(0, 10)
   let formattedDated = date.forEach(element => {
-  if (element === '-') {
-    element = '/'
-  }
-  newDate.push(element)
-})
+    if (element === '-') {
+      element = '/'
+    }
+    newDate.push(element)
+  })
   return newDate.join('');
 }
 let createRooms = (roomData) => {
   roomData.rooms.forEach(room => {
-  roomRepo.push(room)
+    roomRepo.push(room)
   })
 }
 let createBookings = (bookingData) => {
@@ -111,7 +106,7 @@ let verifyPassword = (userType) => {
 }
 let getAvailableRoomInfo = (roomRepo, bookingRepo) => {
   let userRequest = new Manager($('.calander').val(), skeletInn, roomRepo)
-  let formattedDate = [$('.calander').val().slice(-4), $('.calander').val().slice(0,5)].join('/')
+  let formattedDate = [$('.calander').val().slice(-4), $('.calander').val().slice(0, 5)].join('/')
   let userDate = new Date($('.calander').val())
   domUpdates.displayAvailableRooms(userRequest, userDate, roomRepo, bookingRepo)
   searchRooms(userRequest, convertDate(), roomRepo, bookingRepo)
@@ -121,7 +116,7 @@ let searchRooms = (manager, todaysDate, roomRepo, bookingRepo) => {
   $('.search-button').click(() => {
     let availableRooms = manager.getVacantRooms(roomRepo, bookingRepo)
     availableRooms.length > 0 ? domUpdates.filterRooms($(event.target).parent(), availableRooms) : domUpdates.saySorry()
-})
+  })
 }
 let createNewBooking = (manager, todaysDate, roomRepo, bookingRepo, currentUser) => {
   $('.room-button').click(() => {
@@ -131,7 +126,7 @@ let createNewBooking = (manager, todaysDate, roomRepo, bookingRepo, currentUser)
     let booking = roomsAvailable.filter(room => room.number === target)
     let date = getFormattedDate(currentUser).join('')
     postBooking(currentUser, booking[0], date)
-})
+  })
 }
 let getFormattedDate = (currentUser) => {
   let newDate = []
@@ -144,27 +139,28 @@ let getFormattedDate = (currentUser) => {
   })
   return newDate
 }
+
 function postBooking(currentUser, room, date) {
-     fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-       body: JSON.stringify({
-          userID: currentUser.userID,
-          date: date,
-          roomNumber: room.number
+      body: JSON.stringify({
+        userID: currentUser.userID,
+        date: date,
+        roomNumber: room.number
       })
-     })
-       .then(response => response.json())
-       .catch(err => console.error(err))
-       domUpdates.displayThankYou()
-       refreshBookingInfo()
-       domUpdates.goBackToMain()
+    })
+    .then(response => response.json())
+    .catch(err => console.error(err))
+  domUpdates.displayThankYou()
+  refreshBookingInfo()
+  domUpdates.goBackToMain()
 }
 let refreshBookingInfo = () => {
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
-  .then(response => response.json())
-  .then(data => createBookings(data))
-  .catch(data => console.error())
+    .then(response => response.json())
+    .then(data => createBookings(data))
+    .catch(data => console.error())
 }

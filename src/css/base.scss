@@ -1,311 +1,370 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 @import 'variables';
 @import 'mixins';
+
 html {
   height: 100%;
 }
+
 body {
+  background-image: url("../images/creepyCastle.jpg");
   background-repeat: no-repeat;
-  background-image: url('../images/creepyCastle.jpg');
   background-size: cover;
-  min-height: 100%;
   display: grid;
+  font-family: $mainFont;
   grid-template-columns: repeat(11, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  font-family: $mainFont;
+  min-height: 100%;
 }
+
 .login-container {
   align-items: center;
   background-color: $background;
   border-radius: 2%;
+  box-shadow: 0 0 10px -4px $shadow;
   display: flex;
   flex-direction: column;
   grid-area: 4 / 5 / 8 / 8;
-  box-shadow: 0px 0px 10px -4px $shadow;
-  h2{
+
+  h2 {
     color: #fff;
-   }
-  label {
-    color: #fff;
-    align-self: flex-start;
-    margin: 5% 0% 0% 10%;
   }
+
+  label {
+    align-self: flex-start;
+    color: #fff;
+    margin: 5% 0 0 10%;
+  }
+
   input {
     @include textInputs();
   }
-  .large-btn{
+
+  .large-btn {
     @include largeBtn();
   }
 }
+
 .manager-page {
   display: grid;
-  height: 100%;
   grid-area: 1 / 1 / 9 / 12;
   grid-template-columns: repeat(11fr);
   grid-template-rows: repeat(16fr);
+  height: 100%;
+
   h2 {
     @include allHeaders();
   }
+
   .card {
     @include cards();
     background-color: $cardBackground;
   }
+
   .new-booking-btn {
     @include cards();
     background-color: $cardBackground;
     border: none;
   }
+
   .medium-image {
     @include mediumImage();
   }
-  #vacancy-card{
+
+  #vacancy-card {
     grid-area: 2 / 3 / 4 / 10;
   }
-  #revenue-card{
+
+  #revenue-card {
     grid-area: 5 / 3 / 7/ 10;
   }
-  #available-card{
+
+  #available-card {
     grid-area: 8 / 3 / 10 / 10;
   }
-  #new-booking-card{
+
+  #new-booking-card {
     grid-area: 11 / 3 / 13 / 10;
   }
 }
-#vacancy-img  {
-  background-image: url('../images/vacancy.jpg');
+
+#vacancy-img {
+  background-image: url("../images/vacancy.jpg");
+  background-position: (center center);
   background-repeat: no-repeat;
   background-size: 25vw;
-  background-position: (center center);
   border-radius: 5px;
   object-fit: cover;
 }
-#revenue-img  {
-  background-image: url('../images/revenue.jpg');
+
+#revenue-img {
+  background-image: url("../images/revenue.jpg");
+  background-position: (center center);
   background-repeat: no-repeat;
   background-size: 30vw;
-  background-position: (center center);
   border-radius: 5px;
   object-fit: cover;
 }
-#rooms-available-img  {
-  background-image: url('../images/theBlackLodge.jpg');
+
+#rooms-available-img {
+  background-image: url("../images/theBlackLodge.jpg");
+  background-position: (center center);
   background-repeat: no-repeat;
   background-size: 25vw;
   border-radius: 5px;
-  background-position: (center center);
   object-fit: cover;
 }
-#new-booking-img  {
-  background-image: url('../images/guilitine.jpg');
+
+#new-booking-img {
+  background-image: url("../images/guilitine.jpg");
+  background-position: (center center);
   background-repeat: no-repeat;
   background-size: 27vw;
   border-radius: 5px;
-  background-position: (center center);
   object-fit: cover;
 }
-.vacancies-text{
+
+.vacancies-text {
   @include cardData();
 }
-.revenue-text{
+
+.revenue-text {
   @include cardData();
 }
-.available-text{
+
+.available-text {
   @include cardData();
 }
-.new-booking-text{
+
+.new-booking-text {
   @include cardData();
 }
+
 .medium-image {
   @include mediumImage();
 }
-.customer-page{
+
+.customer-page {
   display: grid;
-  height: 100%;
   grid-area: 1 / 1 / 8 / 11;
   grid-template-columns: repeat(11fr);
   grid-template-rows: repeat(16fr);
+  height: 100%;
+
   h2 {
     @include allHeaders();
   }
+
   .card {
     @include cards();
     background-color: $cardBackground;
   }
+
   .medium-image {
     @include mediumImage();
   }
-  #booking-card{
+
+  #booking-card {
     grid-area: 2 / 3 / 4 / 10;
   }
-  #total-spent-card{
+
+  #total-spent-card {
     grid-area: 5 / 3 / 7 / 10;
   }
-  #new-booking-card{
+
+  #new-booking-card {
     grid-area: 8 / 3 / 10 / 10;
     // display: flex;
     // flex-direction: column;
   }
 }
+
 .book-room {
   float: right;
   font-size: 100%;
   height: 100%;
+  margin: 3% 1% 0 0;
   text-align: center;
   width: 60%;
-  margin: 3% 1% 0% 0%;
 }
-.new-booking-text{
-  @inclu  de cardData();
+
+.new-booking-text {
+  @inclu de cardData();
 }
+
 .medium-image {
   @include mediumImage();
 }
+
 .total-spent-text {
-  @include userCardData()
-  width: 60%;
+  @include userCardData() width: 60%;
 }
+
 .current-bookings-text {
   @include userCardData()
 }
+
 .past-bookings-text {
   @include userCardData()
 }
+
 .future-bookings-text {
   @include userCardData()
 }
+
 .booking-date {
   @include inputSelectors()
 }
 
 .calander {
   @include inputSelectors()
-
 }
+
 .see-rooms-btn {
   cursor: pointer;
   float: right;
   font-size: 100%;
-  margin: 9% 0% 0% 0%;
+  margin: 9% 0 0;
   text-align: center;
-  width:  100%;
+  width: 100%;
 }
 
 .available-rooms-page {
-  height: 100%;
   grid-area: 1 / 1 / 9 / 12;
+  height: 100%;
+
   h2 {
     @include allHeaders();
     background-color: $background;
   }
 }
+
 .room-container {
   display: flex;
-  height: 90%;
-  width: 100%;
-  margin-top: 5%;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 90%;
+  margin-top: 5%;
+  width: 100%;
 }
-  .room-section {
-    cursor: pointer;
-    margin-left: 5%;
-    display: flex;
-    flex-direction: column;
-    background-color: $cardBackground;
-    border-radius: 5px;
-    box-shadow: 0px 0px 7px 0px $shadow;
-    display: block;
-    color: #fff;
-    height: 45%;
-    width: 25%;
-    &:hover {
-      box-shadow: 0px 0px 8px 3px $shadow;
-    }
-    &:focus {
-      outline: none;
-      box-shadow: 0px 0px 8px 3px $shadow;
-    }
-  }
-    .room-number {
-      display: block;
-      width: 90%;
-      margin-top: 1.5%;
-      padding: 1% 1% 1% 5%;
-    }
-    .room-type {
-      display: block;
-      width: 90%;
-      margin-top: 1.5%;
-      padding: 1% 1% 1% 5%;
-    }
-    .number-beds {
-      display: block;
-      width: 90%;
-      margin-top: 1.5%;
-      padding: 1% 1% 1% 5%;
-    }
-    .bed-size {
-      display: block;
-      width: 90%;
-      margin-top: 1.5%;
-      padding: 1% 1% 1% 5%;
-    }
 
-    #bookings-img {
-      background-image: url('../images/creepyRoom5.jpg');
-      background-repeat: no-repeat;
-      background-size: 33vw;
-      background-position: (center center);
-      border-radius: 5px;
-      object-fit: cover;
-    }
-    #total-spent-img {
-      background-image: url('../images/revenue.jpg');
-      background-repeat: no-repeat;
-      background-size: 33vw;
-      background-position: (center center);
-      border-radius: 5px;
-      object-fit: cover;
-    }
-    #book-room-img {
-      background-image: url('../images/creepyRoom3.jpg');
-      background-repeat: no-repeat;
-      background-size: 51vw;
-      background-position: (center center);
-      border-radius: 5px;
-      object-fit: cover;
-    }
-  .room-image1 {
+.room-section {
+  background-color: $cardBackground;
+  border-radius: 5px;
+  box-shadow: 0 0 7px 0 $shadow;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  display: block;
+  flex-direction: column;
+  height: 45%;
+  margin-left: 5%;
+  width: 25%;
+
+  &:hover {
+    box-shadow: 0 0 8px 3px $shadow;
+  }
+
+  &:focus {
+    box-shadow: 0 0 8px 3px $shadow;
+    outline: none;
+  }
+}
+
+.room-number {
+  display: block;
+  margin-top: 1.5%;
+  padding: 1% 1% 1% 5%;
+  width: 90%;
+}
+
+.room-type {
+  display: block;
+  margin-top: 1.5%;
+  padding: 1% 1% 1% 5%;
+  width: 90%;
+}
+
+.number-beds {
+  display: block;
+  margin-top: 1.5%;
+  padding: 1% 1% 1% 5%;
+  width: 90%;
+}
+
+.bed-size {
+  display: block;
+  margin-top: 1.5%;
+  padding: 1% 1% 1% 5%;
+  width: 90%;
+}
+
+#bookings-img {
+  background-image: url("../images/creepyRoom5.jpg");
+  background-position: (center center);
+  background-repeat: no-repeat;
+  background-size: 33vw;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+#total-spent-img {
+  background-image: url("../images/revenue.jpg");
+  background-position: (center center);
+  background-repeat: no-repeat;
+  background-size: 33vw;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+#book-room-img {
+  background-image: url("../images/creepyRoom3.jpg");
+  background-position: (center center);
+  background-repeat: no-repeat;
+  background-size: 51vw;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.room-image1 {
   @include roomImage();
-  background-image: url('../images/creepyRoom1.jpg');
-  }
-  .room-image2 {
+  background-image: url("../images/creepyRoom1.jpg");
+}
+
+.room-image2 {
   @include roomImage();
-  background-image: url('../images/creepyRoom2.jpg');
-  }
-  .room-image3 {
+  background-image: url("../images/creepyRoom2.jpg");
+}
+
+.room-image3 {
   @include roomImage();
-  background-image: url('../images/creepyRoom3.jpg');
-  }
-  .room-image4 {
+  background-image: url("../images/creepyRoom3.jpg");
+}
+
+.room-image4 {
   @include roomImage();
-  background-image: url('../images/creepyRoom4.jpg');
-  }
-  .room-image5 {
+  background-image: url("../images/creepyRoom4.jpg");
+}
+
+.room-image5 {
   @include roomImage();
-  background-image: url('../images/creepyRoom5.jpg');
-  }
-  .room-image6 {
+  background-image: url("../images/creepyRoom5.jpg");
+}
+
+.room-image6 {
   @include roomImage();
-  background-image: url('../images/creepyRoom6.jpg');
-  }
-  .room-section {
-    border: none;
-    margin-top: 2%;
-  }
-  #thanks-page {
-    width: 70%;
-  }
+  background-image: url("../images/creepyRoom6.jpg");
+}
+
+.room-section {
+  border: none;
+  margin-top: 2%;
+}
+
+#thanks-page {
+  width: 70%;
+}
+
 .hide {
   display: none;
 }
