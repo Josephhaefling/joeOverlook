@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-  <head>
-    <title>Webpack Starter Kit</title>
-  </head>
-  <body id="body">
-      <section  class="login-container">
-        <h2> Welcome to The Skelet Inn</h2>
-        <label for="user-name" id="ID-label">Email Address</label>
-        <input type="text" name="user-name" id="userID" aria-label='user ID input'>
-        <label for="password" id="password-label">Password</label>
-        <input type="password" name="password" id="password" aria-label='password input'>
-        <button type="button" name="Login" class="large-btn" aria-label='login button'>Login</button>
-      </section>
-      <section class="manager-page hide">
-        <h2>Welcome back Lucy</h2>
-          <section class="card" id="revenue-card">
-            <div class="medium-image" id="revenue-img" alt="image of gold coins"></div>
-            <div class="revenue-text">Total Revenue</div>
-          </section>
-          <section class="card" id="vacancy-card">
-            <div class="medium-image" id="vacancy-img"></div>
-            <div class="vacancies-text">Num Vacancies</div>
-          </section>
-          <section class="card" id="available-card">
-            <div class="medium-image" id="rooms-available-img"></div>
-            <div class="available-text">Rooms availale</div>
-          </section>
-          <section class="card" id="new-booking-card">
-            <div class="medium-image"></div>
-            <div class="new-booking-text">Edit Booking</div>
-          </section>
-      </section>
-      <section class="customer-page hide">
-        <h2 class="user-header">Welcome back User</h2>
-          <section class="card" id="booking-card">
-            <div class="medium-image" id="bookings-img"></div>
-            <div class="current-bookings-text">Current Bookings</div>
-            <div class="future-bookings-text">Current Bookings</div>
-            <div class="past-bookings-text">Past Bookings</div>
-          </section>
-          <section class="card" id="total-spent-card">
-            <div class="medium-image" id="total-spent-img"></div>
-            <div class="total-spent-text">Total Spent</div>
-          </section>
-          <section class="card" id="new-booking-card">
-            <div class="medium-image" id="book-room-img"></div>
-            <span class="book-room "for="create-new-booking">Book a Room
-            <label class="booking-date">Input Date
-              <input class="calander" id="create-new-booking" type="text" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="mm/dd/yyyy"/ aria-label='select date mm/dd/yyyy'>
-            </label>
-            <button class="see-rooms-btn" type="button" name="available-rooms">See Available Rooms</button>
-          </span>
-          </section>
-      </section>
-      <section class="available-rooms-page hide">
-        <h2 class="available-rooms">Available Rooms</h2>
-        <label for="room-type">Choose Room Type</label>
-        <select name="room-type" id="room-type-drop-down">
-         <option value="">Please Choose an Option</option>
-         <option value="residential suite">Residential</option>
-         <option value="single room">Single</option>
-         <option value="junior suite">Junior</option>
-         <option value="suite">Suite</option>
-        </select>
-        <button class="search-button"type="button" name="filter-button">Search</button>
-          <section class="room-container">
-          </section>
-      </section>
 
-      <!-- <img src="./images/creepyCastle.jpg" alt=""> -->
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  </body>
+<head>
+  <title>Webpack Starter Kit</title>
+</head>
+
+<body id="body">
+  <section class="login-container">
+    <h2> Welcome to The Skelet Inn</h2>
+    <label for="user-name" id="ID-label">Email Address</label>
+    <input type="text" name="user-name" id="userID" aria-label='user ID input'>
+    <label for="password" id="password-label">Password</label>
+    <input type="password" name="password" id="password" aria-label='password input'>
+    <button type="button" name="Login" class="large-btn" aria-label='login button'>Login</button>
+  </section>
+  <section class="manager-page hide">
+    <h2>Welcome back Lucy</h2>
+    <section class="card" id="revenue-card">
+      <div class="medium-image" id="revenue-img" alt="image of gold coins"></div>
+      <div class="revenue-text">Total Revenue</div>
+    </section>
+    <section class="card" id="vacancy-card">
+      <div class="medium-image" id="vacancy-img"></div>
+      <div class="vacancies-text">Num Vacancies</div>
+    </section>
+    <section class="card" id="available-card">
+      <div class="medium-image" id="rooms-available-img"></div>
+      <div class="available-text">Rooms availale</div>
+    </section>
+    <section class="card" id="new-booking-card">
+      <div class="medium-image"></div>
+      <div class="new-booking-text">Edit Booking</div>
+    </section>
+  </section>
+  <section class="customer-page hide">
+    <h2 class="user-header">Welcome back User</h2>
+    <section class="card" id="booking-card">
+      <div class="medium-image" id="bookings-img"></div>
+      <div class="current-bookings-text">Current Bookings</div>
+      <div class="future-bookings-text">Current Bookings</div>
+      <div class="past-bookings-text">Past Bookings</div>
+    </section>
+    <section class="card" id="total-spent-card">
+      <div class="medium-image" id="total-spent-img"></div>
+      <div class="total-spent-text">Total Spent</div>
+    </section>
+    <section class="card" id="new-booking-card">
+      <div class="medium-image" id="book-room-img"></div>
+      <span class="book-room " for="create-new-booking">Book a Room
+        <label class="booking-date">Input Date
+          <input class="calander" id="create-new-booking" type="text" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" value="mm/dd/yyyy" / aria-label='select date mm/dd/yyyy'>
+        </label>
+        <button class="see-rooms-btn" type="button" name="available-rooms">See Available Rooms</button>
+      </span>
+    </section>
+  </section>
+  <section class="available-rooms-page hide">
+    <h2 class="available-rooms">Available Rooms</h2>
+    <label for="room-type">Choose Room Type</label>
+    <select name="room-type" id="room-type-drop-down">
+      <option value="">Please Choose an Option</option>
+      <option value="residential suite">Residential</option>
+      <option value="single room">Single</option>
+      <option value="junior suite">Junior</option>
+      <option value="suite">Suite</option>
+    </select>
+    <button class="search-button" type="button" name="filter-button">Search</button>
+    <section class="room-container">
+    </section>
+  </section>
+
+  <!-- <img src="./images/creepyCastle.jpg" alt=""> -->
+  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+</body>
+
 </html>
